@@ -19,22 +19,28 @@
                 <th class="table__header">Email</th>
                 <th class="table__header">勤務状態</th>
             </tr>
-            @foreach ($users as $key => $user)
+            @php
+                $pageNumber = ($users->currentPage() - 1) * $users->perPage() + 1;
+            @endphp
+            @foreach ($users as $user)
                 <tr class="table__row">
-                    <td class="table__item">{{ $key + 1 }}</td>
+                    <td class="table__item">{{ $pageNumber }}</td>
                     <td class="table__item">{{ $user->id }}</td>
                     <td class="table__item">{{ $user->name }}</td>
                     <td class="table__item">{{ $user->email }}</td>
-                    @if($user->status==1)
+                    @if ($user->status == 1)
                         <td class="table__item">勤務中</td>
-                    @elseif($user->status==2)
+                    @elseif($user->status == 2)
                         <td class="table__item">休憩中</td>
-                    @elseif($user->status==3)
+                    @elseif($user->status == 3)
                         <td class="table__item">退勤</td>
                     @else
                         <td class="table__item">その他</td>
                     @endif
                 </tr>
+                @php
+                    $pageNumber++;
+                @endphp
             @endforeach
         </table>
     </div>
