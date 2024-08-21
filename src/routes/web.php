@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 //ログインホーム
 Route::get('/',[AttendanceController::class,'punch'])
-    ->middleware('auth','verified');
+    ->middleware('auth');
 
 // 打刻機能
 Route::post('/work', [AttendanceController::class, 'work'])

@@ -44,6 +44,7 @@ class AttendanceController extends Controller
                 ->where('date', $now_date)
                 ->first()
                 ->id;
+                dd($work_id);
         }
 
         // 勤務開始
@@ -87,7 +88,6 @@ class AttendanceController extends Controller
         $user->save();
 
         $attendance->save();
-
         return redirect('/')->with(compact('status'));
     }
 
